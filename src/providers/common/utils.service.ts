@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 /**
  * Utils类存放和业务无关的公共方法
@@ -121,5 +122,28 @@ export class Utils {
             str.charCodeAt(i) > 255 ? len += 2 : len++;
         }
         return len;
+    }
+
+    /**
+    *  创建一个类似page动画的modal
+    * @param modalCtrl ModalController实例
+    * @param modalName 创建的modal的组件名
+    * @param info  传递给新建的modal的参数，json格式
+    * @param callBack 如果存在则监听返回事件，并处理
+    * @returns 返回一个profileModal
+    */
+    static createModal(modalCtrl: ModalController, modalName: any, info: any, callBack?: Function) {
+        let profileModal = modalCtrl.create(modalName, info, {
+            enterAnimation: 'modal-from-right-enter',
+            leaveAnimation: 'modal-from-right-leave'
+        });
+        if (callBack) {
+            profileModal.onDidDismiss(data => {
+                callBack(data);
+            });
+        }
+        profileModal.present();
+
+        return profileModal;
     }
 }
