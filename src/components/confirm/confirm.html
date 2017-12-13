@@ -1,0 +1,15 @@
+<div>
+    <div class="confirm" *ngIf="showFlag">
+        <ion-backdrop class="heB-overBox" disable-activated role="presentation" tappable style="z-index:999;opacity: 1; transition-delay: initial; transition-property: none;">
+            <div class="heB-alertBox">
+                <div class="txtAlert">
+                    <div class="positionBox">{{text}}</div>
+                </div>
+                <div class="heB-btn">
+                    <button (click)="cancel()">{{cancelBtnText}}</button>
+                    <button class="btn2" (click)="confirm()">{{confirmBtnText}}</button>
+                </div>
+            </div>
+        </ion-backdrop>
+    </div>
+</div>
